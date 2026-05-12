@@ -9,13 +9,9 @@ export const authAPI = {
 export const userAPI = {
   updateProfile: (data) => apiClient.put('/users/profile', data),
   uploadResume: (formData) =>
-    apiClient.post('/users/upload-resume', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }),
+    apiClient.post('/users/upload-resume', formData),
   uploadCoverLetter: (formData) =>
-    apiClient.post('/users/upload-cover-letter', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }),
+    apiClient.post('/users/upload-cover-letter', formData),
   getProfile: (userId) => apiClient.get(`/users/profile/${userId}`),
 };
 
@@ -30,9 +26,7 @@ export const jobAPI = {
 
 export const applicationAPI = {
   applyForJob: (jobId, formData) =>
-    apiClient.post(`/applications/${jobId}/apply`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }),
+    apiClient.post(`/applications/${jobId}/apply`, formData),
   getMyApplications: () => apiClient.get('/applications/my-applications'),
   getJobApplications: (jobId) => apiClient.get(`/applications/job/${jobId}`),
   getApplicationDetail: (applicationId) => apiClient.get(`/applications/${applicationId}`),

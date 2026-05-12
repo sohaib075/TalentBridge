@@ -54,8 +54,8 @@ export default function Landing() {
               </div>
               
               <h1 className="text-6xl md:text-8xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.85]">
-                Hire <span className="text-indigo-600">Faster</span>.<br />
-                Work <span className="text-indigo-600">Smarter</span>.
+                Hire <span className="text-indigo-600">Faster</span><br />
+                Work <span className="text-indigo-600">Smarter</span>
               </h1>
               
               <p className="text-slate-500 text-xl md:text-2xl mb-12 font-medium leading-relaxed max-w-2xl">
@@ -154,7 +154,7 @@ export default function Landing() {
         <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-5xl font-black text-slate-900 mb-6 tracking-tight">
-              Featured <span className="text-indigo-600 italic">Opportunities</span>.
+              Featured <span className="text-indigo-600 italic">Opportunities</span>
             </h2>
             <p className="text-slate-500 text-xl font-medium leading-relaxed">
               Curated roles from the most innovative technology companies in the region.

@@ -3,7 +3,7 @@ import CloudinaryStorage from 'multer-storage-cloudinary';
 import cloudinary from '../config/cloudinary.js';
 
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary: { v2: cloudinary },
   params: {
     folder: 'ats-uploads',
     allowed_formats: ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png'],

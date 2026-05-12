@@ -58,7 +58,7 @@ export default function Jobs() {
         <div className="bg-slate-900 pt-44 pb-20 mb-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[500px] h-full bg-indigo-600/10 blur-[100px] rounded-full translate-x-1/2"></div>
           <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <h1 className="text-5xl font-black text-white mb-8 tracking-tight">Discover your <span className="text-indigo-400">next challenge</span>.</h1>
+            <h1 className="text-5xl font-black text-white mb-8 tracking-tight">Discover your <span className="text-indigo-400">next challenge</span></h1>
             <div className="max-w-3xl">
               <div className="relative group">
                 <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-400 transition-colors" size={24} />

@@ -109,6 +109,12 @@ export default function Navbar({ isDarkPage = false }) {
                           </div>
                           Dashboard
                         </Link>
+                        <Link to="/candidate-profile" className="flex items-center gap-3 px-4 py-3 text-sm font-bold text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl transition-all group/item">
+                          <div className="w-8 h-8 rounded-lg bg-slate-50 group-hover/item:bg-indigo-100 flex items-center justify-center transition-colors">
+                            <User size={16} />
+                          </div>
+                          My Profile
+                        </Link>
                         <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-rose-500 hover:bg-rose-50 rounded-xl transition-all group/item">
                           <div className="w-8 h-8 rounded-lg bg-rose-50 flex items-center justify-center transition-colors">
                             <LogOut size={16} />

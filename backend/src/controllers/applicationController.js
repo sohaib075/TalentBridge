@@ -1,17 +1,35 @@
 import Application from '../models/Application.js';
 import Job from '../models/Job.js';
+import User from '../models/User.js';
 import Interview from '../models/Interview.js';
 import { sendShortlistEmail, sendRejectionEmail, sendInterviewEmail, sendCustomEmail } from '../utils/emailService.js';
 
 export const applyForJob = async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'Resume required' });
-    }
-
     const { jobId } = req.params;
     const { coverLetter } = req.body;
     const candidateId = req.user.userId;
+
+    // Get candidate profile to check for resume
+    const candidate = await User.findById(candidateId);
+    if (!candidate) {
+      return res.status(404).json({ message: 'Candidate not found' });
+    }
+
+    // Determine resume path
+    console.log('Application Attempt:', { 
+      jobId, 
+      hasUploadedFile: !!req.file, 
+      profileResume: candidate.resume 
+    });
+    
+    let resumePath = req.file ? req.file.path : candidate.resume;
+
+    if (!resumePath) {
+      return res.status(400).json({ 
+        message: 'A resume is required to apply. Please upload one in this form or ensure your profile has a resume attached.' 
+      });
+    }
 
     // Check if job exists
     const job = await Job.findById(jobId);
@@ -32,8 +50,8 @@ export const applyForJob = async (req, res) => {
     const application = new Application({
       candidate: candidateId,
       job: jobId,
-      resume: req.file.path,
-      coverLetter,
+      resume: resumePath,
+      coverLetter: coverLetter || candidate.coverLetter,
     });
 
     await application.save();

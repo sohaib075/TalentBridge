@@ -45,8 +45,15 @@ export const uploadResume = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    console.log('Resume Upload Attempt:', { 
+      userId: req.user.userId, 
+      filePath: req.file.path 
+    });
+
     user.resume = req.file.path;
     await user.save();
+
+    console.log('Resume Saved Successfully for user:', user._id);
 
     res.status(200).json({
       message: 'Resume uploaded successfully',

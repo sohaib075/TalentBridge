@@ -23,10 +23,13 @@ import JobForm from './pages/hr/JobForm';
 import ManageApplications from './pages/hr/ManageApplications';
 import ManageInterviews from './pages/hr/ManageInterviews';
 
+import ScrollToTop from './components/ScrollToTop';
+
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           {/* ========== PUBLIC ROUTES ========== */}
           <Route path="/" element={<Landing />} />

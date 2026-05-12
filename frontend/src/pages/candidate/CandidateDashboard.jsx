@@ -51,14 +51,14 @@ export default function CandidateDashboard() {
                 <Sparkles size={14} className="fill-indigo-300" /> Career Growth Active
               </div>
               <h1 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight leading-tight">
-                Accelerate your <span className="text-indigo-400 italic">career journey</span>.
+                Accelerate your <span className="text-indigo-400 italic">career journey</span>
               </h1>
               <p className="text-slate-400 text-lg font-medium max-w-xl mb-10">
                 You have 3 active interviews this week. We've matched 5 new roles to your profile.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/jobs" className="btn-primary !px-8 !py-4 shadow-none">Explore New Roles</Link>
-                <button className="btn-secondary !bg-white/5 !text-white !border-white/10 !px-8 !py-4 hover:!bg-white/10 transition-all">Complete Profile</button>
+                <Link to="/candidate-profile" className="btn-secondary !bg-white/5 !text-white !border-white/10 !px-8 !py-4 hover:!bg-white/10 transition-all flex items-center justify-center">Complete Profile</Link>
               </div>
             </div>
           </div>
