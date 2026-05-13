@@ -11,6 +11,7 @@ import jobRoutes from './routes/jobRoutes.js';
 import applicationRoutes from './routes/applicationRoutes.js';
 import interviewRoutes from './routes/interviewRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import mongoose from 'mongoose';
 
 const app = express();
 
@@ -45,7 +46,19 @@ prefixes.forEach(prefix => {
   
   // Health check
   app.get(`${prefix}/health`, (req, res) => {
-    res.status(200).json({ message: 'Server is running' });
+    const dbStatus = mongoose.connection.readyState;
+    const statusMap = {
+      0: 'Disconnected',
+      1: 'Connected',
+      2: 'Connecting',
+      3: 'Disconnecting'
+    };
+    
+    res.status(200).json({ 
+      message: 'Server is running',
+      database: statusMap[dbStatus] || 'Unknown',
+      timestamp: new Date().toISOString()
+    });
   });
 });
 
