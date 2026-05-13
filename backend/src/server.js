@@ -33,19 +33,20 @@ app.use(express.urlencoded({ extended: true }));
   }
 })();
 
-// Routes
-const baseRoute = process.env.API_PREFIX !== undefined ? process.env.API_PREFIX : '/api';
-console.log(`Configuring routes with base: ${baseRoute}`);
+// Universal Routes (handles both /api/* and /* for Vercel compatibility)
+const prefixes = ['/api', ''];
 
-app.use(`${baseRoute}/auth`, authRoutes);
-app.use(`${baseRoute}/users`, userRoutes);
-app.use(`${baseRoute}/jobs`, jobRoutes);
-app.use(`${baseRoute}/applications`, applicationRoutes);
-app.use(`${baseRoute}/interviews`, interviewRoutes);
-
-// Health check
-app.get(`${baseRoute}/health`, (req, res) => {
-  res.status(200).json({ message: 'Server is running' });
+prefixes.forEach(prefix => {
+  app.use(`${prefix}/auth`, authRoutes);
+  app.use(`${prefix}/users`, userRoutes);
+  app.use(`${prefix}/jobs`, jobRoutes);
+  app.use(`${prefix}/applications`, applicationRoutes);
+  app.use(`${prefix}/interviews`, interviewRoutes);
+  
+  // Health check
+  app.get(`${prefix}/health`, (req, res) => {
+    res.status(200).json({ message: 'Server is running' });
+  });
 });
 
 // Error handling
