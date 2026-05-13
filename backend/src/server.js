@@ -34,14 +34,15 @@ app.use(express.urlencoded({ extended: true }));
 })();
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/jobs', jobRoutes);
-app.use('/api/applications', applicationRoutes);
-app.use('/api/interviews', interviewRoutes);
+const apiPrefix = process.env.API_PREFIX || '';
+app.use(`${apiPrefix}/api/auth`, authRoutes);
+app.use(`${apiPrefix}/api/users`, userRoutes);
+app.use(`${apiPrefix}/api/jobs`, jobRoutes);
+app.use(`${apiPrefix}/api/applications`, applicationRoutes);
+app.use(`${apiPrefix}/api/interviews`, interviewRoutes);
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get(`${apiPrefix}/api/health`, (req, res) => {
   res.status(200).json({ message: 'Server is running' });
 });
 

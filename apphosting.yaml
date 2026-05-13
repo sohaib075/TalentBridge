@@ -1,0 +1,18 @@
+kind: AppHostingConfig
+schemaVersion: v1
+experimentalServices:
+  frontend:
+    entrypoint: frontend
+    routePrefix: /
+    framework: vite
+    env:
+      - variable: VITE_API_URL
+        value: /_/backend/api
+  backend:
+    entrypoint: backend
+    routePrefix: /_/backend
+    # Explicitly specify the start command for the backend Node app
+    serverStartCommand: npm start
+    env:
+      - variable: API_PREFIX
+        value: /_/backend
