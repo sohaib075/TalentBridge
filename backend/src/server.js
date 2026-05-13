@@ -34,15 +34,17 @@ app.use(express.urlencoded({ extended: true }));
 })();
 
 // Routes
-const apiPrefix = process.env.API_PREFIX || '';
-app.use(`${apiPrefix}/api/auth`, authRoutes);
-app.use(`${apiPrefix}/api/users`, userRoutes);
-app.use(`${apiPrefix}/api/jobs`, jobRoutes);
-app.use(`${apiPrefix}/api/applications`, applicationRoutes);
-app.use(`${apiPrefix}/api/interviews`, interviewRoutes);
+const baseRoute = process.env.API_PREFIX !== undefined ? process.env.API_PREFIX : '/api';
+console.log(`Configuring routes with base: ${baseRoute}`);
+
+app.use(`${baseRoute}/auth`, authRoutes);
+app.use(`${baseRoute}/users`, userRoutes);
+app.use(`${baseRoute}/jobs`, jobRoutes);
+app.use(`${baseRoute}/applications`, applicationRoutes);
+app.use(`${baseRoute}/interviews`, interviewRoutes);
 
 // Health check
-app.get(`${apiPrefix}/api/health`, (req, res) => {
+app.get(`${baseRoute}/health`, (req, res) => {
   res.status(200).json({ message: 'Server is running' });
 });
 
